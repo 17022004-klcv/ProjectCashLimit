@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.BoxBlur?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="722.0" prefWidth="545.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.cashlimit.controllers.singUpController">
+   <children>
+      <ImageView fitHeight="722.0" fitWidth="736.0" layoutX="1.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../img/fondo.jpg" />
+         </image>
+         <effect>
+            <BoxBlur height="14.3" width="0.0" />
+         </effect>
+      </ImageView>
+      <Pane layoutX="38.0" layoutY="25.0" opacity="0.72" prefHeight="682.0" prefWidth="483.0" style="-fx-background-color: silver; -fx-background-radius: 50px;">
+         <children>
+            <Label layoutX="191.0" layoutY="14.0" prefHeight="74.0" prefWidth="256.0" styleClass="login-label" stylesheets="@../styles/login.css" text="Create" textAlignment="CENTER" />
+            <TextField fx:id="txt_firstname" layoutX="168.0" layoutY="127.0" prefHeight="39.0" prefWidth="241.0" promptText="Mark" styleClass="rounded-text-field" stylesheets="@../styles/login.css" />
+            <TextField fx:id="txt_lastname" layoutX="168.0" layoutY="189.0" prefHeight="39.0" prefWidth="241.0" promptText="Zuckenberg" styleClass="rounded-text-field" stylesheets="@../styles/login.css" />
+            <Button fx:id="bt_singUp" layoutX="107.0" layoutY="637.0" mnemonicParsing="false" onAction="#bt_singUp" prefHeight="31.0" prefWidth="241.0" text="Sing Up" />
+            <ImageView fitHeight="98.0" fitWidth="137.0" layoutX="58.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../img/logo.png" />
+               </image>
+            </ImageView>
+            <Label layoutX="51.0" layoutY="129.0" prefHeight="39.0" prefWidth="91.0" styleClass="label-label" stylesheets="@../styles/login.css" text="First Name" textAlignment="CENTER" />
+            <Label layoutX="47.0" layoutY="189.0" prefHeight="42.0" prefWidth="98.0" styleClass="label-label" stylesheets="@../styles/login.css" text="Last Name" textAlignment="CENTER" />
+            <Label layoutX="47.0" layoutY="249.0" prefHeight="42.0" prefWidth="98.0" styleClass="label-label" stylesheets="@../styles/login.css" text="Email" textAlignment="CENTER" />
+            <Label layoutX="47.0" layoutY="320.0" prefHeight="42.0" prefWidth="98.0" styleClass="label-label" stylesheets="@../styles/login.css" text="Phone" textAlignment="CENTER" />
+            <TextField fx:id="txt_email" layoutX="168.0" layoutY="249.0" prefHeight="39.0" prefWidth="241.0" promptText="\@example.com" styleClass="rounded-text-field" stylesheets="@../styles/login.css" />
+            <TextField fx:id="txt_phone" layoutX="168.0" layoutY="310.0" prefHeight="39.0" prefWidth="241.0" promptText="####-####" styleClass="rounded-text-field" stylesheets="@../styles/login.css" />
+            <Label layoutX="48.0" layoutY="377.0" prefHeight="42.0" prefWidth="120.0" styleClass="label-label" stylesheets="@../styles/login.css" text="Account Number" textAlignment="CENTER" />
+            <Label layoutX="48.0" layoutY="438.0" prefHeight="42.0" prefWidth="120.0" styleClass="label-label" stylesheets="@../styles/login.css" text="Bank" textAlignment="CENTER" />
+            <TextField fx:id="txt_numAccount" layoutX="168.0" layoutY="377.0" prefHeight="39.0" prefWidth="241.0" styleClass="rounded-text-field" stylesheets="@../styles/login.css" />
+            <TextField fx:id="txt_bank" layoutX="168.0" layoutY="438.0" prefHeight="39.0" prefWidth="241.0" promptText="Atlantida Bank" styleClass="rounded-text-field" stylesheets="@../styles/login.css" />
+            <TextField fx:id="txt_amount" layoutX="168.0" layoutY="505.0" prefHeight="39.0" prefWidth="241.0" promptText="00.00" styleClass="rounded-text-field" stylesheets="@../styles/login.css" />
+            <Label layoutX="47.0" layoutY="505.0" prefHeight="42.0" prefWidth="120.0" styleClass="label-label" stylesheets="@../styles/login.css" text="Amount" textAlignment="CENTER" />
+            <Label layoutX="47.0" layoutY="560.0" prefHeight="42.0" prefWidth="120.0" styleClass="label-label" stylesheets="@../styles/login.css" text="Account Type" textAlignment="CENTER" />
+            <ComboBox fx:id="cbb_accounts" layoutX="173.0" layoutY="560.0" prefHeight="4.0" prefWidth="232.0" styleClass="label-label" stylesheets="@../styles/login.css" />
+            <Label layoutX="289.0" layoutY="51.0" prefHeight="74.0" prefWidth="256.0" styleClass="login-label" stylesheets="@../styles/login.css" text="Account!" textAlignment="CENTER" />
+         </children>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Pane>
+   </children>
+</AnchorPane>

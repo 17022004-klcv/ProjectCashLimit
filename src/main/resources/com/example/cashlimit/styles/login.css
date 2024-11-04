@@ -1,0 +1,39 @@
+.login-label {
+    -fx-font-size: 36px;           /* Tamaño de fuente */
+    -fx-font-family: "Roboto";      /* Fuente */
+    -fx-text-fill: #333333;        /* Color del texto */
+    -fx-font-weight: bold;         /* Negrita */
+    -fx-padding: 10px 0;           /* Espaciado alrededor */
+}
+
+.label-label {
+    -fx-font-size: 15px;           /* Tamaño de fuente */
+    -fx-font-family: "Calibri";      /* Fuente */
+    -fx-text-fill: #333333;        /* Color del texto */
+    -fx-padding: 10px 0;           /* Espaciado alrededor */
+}
+
+.label-links{
+   -fx-font-size: 15px;           /* Tamaño de fuente */
+    -fx-font-family: "Calibri";      /* Fuente */
+    -fx-text-fill: #333333;        /* Color del texto */
+    -fx-padding: 10px 0;
+}
+
+/* Estilo para el Label en el Login cuando está en foco (hover) */
+.label-links:hover {
+    -fx-text-fill: blue;        /* Cambia el color del texto al pasar el cursor */
+    -fx-cursor: hand;              /* Muestra el cursor como una mano */
+    -fx-underline: true;
+}
+
+/* Estilo para un TextField redondeado */
+.rounded-text-field {
+    -fx-background-color: #f0f0f0;    /* Color de fondo */
+    -fx-border-color: #cccccc;         /* Color del borde */
+    -fx-border-radius: 15px;           /* Radio del borde */
+    -fx-background-radius: 15px;       /* Radio del fondo */
+    -fx-padding: 10px;                  /* Espaciado interno */
+    -fx-font-size: 14px;                /* Tamaño de fuente */
+     -fx-cursor: hand;
+}

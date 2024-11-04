@@ -1,0 +1,66 @@
+.body{
+    -fx-background-image: url("../img/fondo2.jpg");
+}
+
+.panel{
+    -fx-background-color: rgba(211, 211, 211, 0.75);
+    -fx-background-radius: 50px;
+}
+
+.button-51 {
+    -fx-background-color: rgba(211, 211, 211, 0.75);
+    -fx-border-color: #6f7e89;
+    -fx-border-width: 1px;
+    -fx-border-radius: 10px; /* Redondeo del borde */
+    -fx-background-radius: 10px; /* Redondeo del fondo */
+    -fx-font-family: "Avenir Next LT W01 Bold", sans-serif;
+    -fx-font-size: 12px;
+    -fx-font-weight: bold;
+    -fx-line-height: 24px;
+    -fx-padding: 16px 23px;
+    -fx-text-fill: #00132C;
+}
+
+.button-51:hover {
+    -fx-background-color: #cfd8df ;
+    -fx-cursor: hand;
+    -fx-background-radius: 10px; /* Asegura que el fondo también tenga redondeo al hacer hover */
+}
+
+.button-51:before {
+    -fx-background-color: #D5EDF6;
+    -fx-content: "";
+    -fx-translate-x: -7px;
+    -fx-translate-y: -9px;
+    -fx-width: 100%;
+
+    -fx-transition: -fx-background-color 300ms ease-in;
+    -fx-background-radius: 10px; /* Redondeo del efecto antes */
+}
+
+.button-51:hover:before {
+    -fx-background-color: #6DCFF6;
+    -fx-background-radius: 10px;
+}
+
+@media screen and (min-width: 768px) {
+    .button-51 {
+        -fx-padding: 16px 32px;
+    }
+}
+
+
+.label-title {
+    -fx-font-size: 36px;           /* Tamaño de fuente */
+    -fx-font-family: "Roboto";      /* Fuente */
+    -fx-text-fill: #333333;        /* Color del texto */
+    -fx-font-weight: bold;         /* Negrita */
+    -fx-padding: 10px 0;           /* Espaciado alrededor */
+}
+
+.label-text {
+    -fx-font-size: 15px;           /* Tamaño de fuente */
+    -fx-font-family: "Calibri";      /* Fuente */
+    -fx-text-fill: #333333;        /* Color del texto */
+    -fx-padding: 10px 0;           /* Espaciado alrededor */
+}
