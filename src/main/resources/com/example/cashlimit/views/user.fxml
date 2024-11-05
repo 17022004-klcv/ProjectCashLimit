@@ -42,7 +42,7 @@
       </Pane>
       <Pane layoutX="155.0" layoutY="99.0" prefHeight="418.0" prefWidth="531.0" stylesheets="@../styles/dashboard.css">
          <children>
-            <Button fx:id="btUpdateInfo" layoutX="304.0" layoutY="336.0" mnemonicParsing="false" onAction="#btUpdateInfo" prefHeight="51.0" prefWidth="125.0" stylesheets="@../styles/dashboard.css" text="Update Info">
+            <Button fx:id="btUpdateInfo" layoutX="310.0" layoutY="336.0" mnemonicParsing="false" onAction="#btUpdateInfo" prefHeight="51.0" prefWidth="125.0" stylesheets="@../styles/dashboard.css" text="Update Info">
                <styleClass>
                   <String fx:value="boton" />
                   <String fx:value="button-51" />
@@ -58,12 +58,17 @@
             <TextField fx:id="txt_email" layoutX="203.0" layoutY="204.0" prefHeight="39.0" prefWidth="241.0" styleClass="rounded-text-field" stylesheets="@../styles/login.css" />
             <ComboBox fx:id="cbb_accounts" layoutX="203.0" layoutY="265.0" prefHeight="4.0" prefWidth="232.0" styleClass="label-label" stylesheets="@../styles/login.css" />
             <TextField fx:id="txt_password" layoutX="203.0" layoutY="89.0" prefHeight="39.0" prefWidth="241.0" styleClass="rounded-text-field" stylesheets="@../styles/login.css" />
-            <Button fx:id="bt_addAccount" layoutX="166.0" layoutY="336.0" mnemonicParsing="false" onAction="#bt_addAccount" prefHeight="51.0" prefWidth="125.0" stylesheets="@../styles/dashboard.css" text="Add Account">
+            <Button fx:id="bt_addAccount" layoutX="178.0" layoutY="336.0" mnemonicParsing="false" onAction="#bt_addAccount" prefHeight="51.0" prefWidth="125.0" stylesheets="@../styles/dashboard.css" text="Add Account">
                <styleClass>
                   <String fx:value="boton" />
                   <String fx:value="button-51" />
                </styleClass>
             </Button>
+            <ImageView fx:id="imglog_out" fitHeight="42.0" fitWidth="48.0" layoutX="121.0" layoutY="339.0" onMouseClicked="#imgLog_out" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../img/encender.png" />
+               </image>
+            </ImageView>
          </children>
          <styleClass>
             <String fx:value="fondo" />

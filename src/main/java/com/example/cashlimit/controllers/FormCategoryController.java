@@ -1,16 +1,21 @@
 package com.example.cashlimit.controllers;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
+import javax.swing.*;
 import java.io.IOException;
+
+import static com.example.cashlimit.validations.validation.emptyText;
 
 public class FormCategoryController {
 
@@ -18,7 +23,21 @@ public class FormCategoryController {
     private ImageView imgBack;
 
     @FXML
-    private TextField txt_user;
+    private TextField txt_category;
+    @FXML
+    private Button btn_addCategory;
+
+    @FXML
+    void btn_addCategory(ActionEvent event) {
+        if(!emptyText(txt_category)){
+            System.out.println("descripcion vacio");
+        }else{
+            System.out.println("ningun campo vacio");
+            JOptionPane.showMessageDialog(null, "Category Added!");
+            txt_category.setText("");
+
+        }
+    }
 
     @FXML
     void imgBack(MouseEvent event) throws IOException {

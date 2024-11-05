@@ -13,7 +13,10 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
+import javax.swing.*;
 import java.io.IOException;
+
+import static com.example.cashlimit.validations.validation.*;
 
 public class AddAccountController {
 
@@ -37,7 +40,23 @@ public class AddAccountController {
 
     @FXML
     void bt_addAccount(ActionEvent event) {
+        if(!emptyText(txt_accountNumber)){
+            System.out.println("descripcion vacio");
+        }else if(!emptyText(txt_bank)){
+            System.out.println("banco vacio");
+        }else if(!emptyText(txt_amount)){
+            System.out.println("monto vacio");
+        }else{
+            if(validateAccountNumber(txt_accountNumber)){
+                if(validateAmount(txt_amount)){
+                    JOptionPane.showMessageDialog(null, "Account Added!");
+                    txt_accountNumber.setText("");
+                    txt_amount.setText("");
+                    txt_bank.setText("");
+                }
+            }
 
+        }
     }
 
     @FXML

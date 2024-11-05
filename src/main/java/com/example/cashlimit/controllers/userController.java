@@ -13,7 +13,10 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
+import javax.swing.*;
 import java.io.IOException;
+
+import static com.example.cashlimit.validations.validation.*;
 
 public class userController {
 
@@ -50,13 +53,38 @@ public class userController {
     private Button bt_addAccount;
 
     @FXML
+    private ImageView imglog_out;
+
+    @FXML
+    void imgLog_out(MouseEvent event) throws IOException {
+        CambiarVista("/com/example/cashlimit/views/login.fxml", (Node) event.getSource());
+
+    }
+    @FXML
     void bt_addAccount(ActionEvent event) throws IOException {
         CambiarVista("/com/example/cashlimit/views/AddAccount.fxml", (Node) event.getSource());
 
     }
     @FXML
     void btUpdateInfo(ActionEvent event) {
+        if(!emptyText(txt_user)){
+            System.out.println("usuario vacio");
+        }else if(!emptyText(txt_password)){
+            System.out.println("contra vacio");
+        }else if(!emptyText(txt_email)){
+            System.out.println("email vacio");
+        }else if(!emptyText(txt_phone)){
+            System.out.println("telefono vacio");
+        }else{
 
+            System.out.println("ningun campo vacio");
+            if(validateNumberFormat(txt_phone)){
+                if(validateEmail(txt_email)){
+                    JOptionPane.showMessageDialog(null, "Updated information!");
+                }
+            }
+
+        }
     }
 
     @FXML

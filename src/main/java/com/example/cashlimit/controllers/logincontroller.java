@@ -17,6 +17,7 @@ import javafx.stage.Stage;
 import java.io.IOException;
 
 import static com.example.cashlimit.validations.validation.emptyText;
+import static com.example.cashlimit.validations.validation.emptyText_Trim;
 
 public class logincontroller {
 
@@ -49,8 +50,14 @@ public class logincontroller {
 
     @FXML
     void bt_login(ActionEvent event) throws IOException {
-        if(emptyText(txt_user) && emptyText(txt_password)){
+
+        if(!emptyText_Trim(txt_user)){
+            System.out.println("usuario vacio");
+        }else if(!emptyText_Trim(txt_password)){
+            System.out.println("pass vacio");
+        }else{
             CambiarVista("/com/example/cashlimit/views/dashboard.fxml", (Node) event.getSource());
+
         }
     }
     validation validate = new validation();

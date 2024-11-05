@@ -11,9 +11,10 @@ import javafx.scene.control.TextField;
 import javafx.fxml.FXMLLoader;
 import javafx.stage.Stage;
 
+import javax.swing.*;
 import java.io.IOException;
 
-import static com.example.cashlimit.validations.validation.emptyText;
+import static com.example.cashlimit.validations.validation.*;
 
 public class singUpController {
 
@@ -46,10 +47,45 @@ public class singUpController {
 
     @FXML
     void bt_singUp(ActionEvent event) throws IOException {
-        if(emptyText(txt_amount) && emptyText(txt_bank) && emptyText(txt_email) && emptyText(txt_lastname) && emptyText(txt_phone)
-        && emptyText(txt_firstname) && emptyText(txt_numAccount)){
-            CambiarVista("/com/example/cashlimit/views/login.fxml", (Node) event.getSource());
+        if (!emptyText(txt_amount)) {
+            System.out.println("Monto vacío");
+        } else if (!emptyText(txt_bank)) {
+            System.out.println("Banco vacío");
+        } else if (!emptyText(txt_email)) {
+            System.out.println("Email vacío");
+        } else if (!emptyText(txt_lastname)) {
+            System.out.println("Apellido vacío");
+        } else if (!emptyText(txt_phone)) {
+            System.out.println("Teléfono vacío");
+        } else if (!emptyText(txt_firstname)) {
+            System.out.println("Nombre vacío");
+        } else if (!emptyText(txt_numAccount)) {
+            System.out.println("Número de cuenta vacío");
+        } else {
+            System.out.println("Ningún campo vacío");
+            if (validateNumberFormat(txt_phone)){
+                if (validateEmail(txt_email)){
+                    if(validateAccountNumber(txt_numAccount)){
+                        JOptionPane.showMessageDialog(null, "New user created with success !");
+
+                        // Limpiar los campos después de agregar la factura
+                        txt_amount.setText("");
+                        txt_bank.setText("");
+                        txt_email.setText("");
+                        txt_lastname.setText("");
+                        txt_phone.setText("");
+                        txt_firstname.setText("");
+                        txt_numAccount.setText("");
+
+                        // Cambiar de vista si todos los campos están llenos
+                        CambiarVista("/com/example/cashlimit/views/login.fxml", (Node) event.getSource());
+                    }
+
+                }
+
+            }
         }
+
 
     }
     public static void CambiarVista(String ruta, Node bt) throws IOException {

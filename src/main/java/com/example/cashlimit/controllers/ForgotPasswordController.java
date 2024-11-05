@@ -10,7 +10,11 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
+import javax.swing.*;
 import java.io.IOException;
+
+import static com.example.cashlimit.validations.validation.emptyText;
+import static com.example.cashlimit.validations.validation.validateEmail;
 
 public class ForgotPasswordController {
 
@@ -25,7 +29,13 @@ public class ForgotPasswordController {
 
     @FXML
     void bt_check(ActionEvent event) throws IOException {
-        CambiarVista("/com/example/cashlimit/views/login.fxml", (Node) event.getSource());
+
+        if(emptyText(txt_user) && emptyText(txt_password)){
+            if(validateEmail(txt_user)){
+                JOptionPane.showMessageDialog(null, "Password Updated!");
+                CambiarVista("/com/example/cashlimit/views/login.fxml", (Node) event.getSource());
+            }
+        }
 
     }
     public static void CambiarVista(String ruta, Node bt) throws IOException {

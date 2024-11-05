@@ -14,8 +14,8 @@
          <children>
             <Label layoutX="157.0" layoutY="53.0" styleClass="label-title" stylesheets="@../styles/forms.css" text="New Category" />
             <Label layoutX="51.0" layoutY="145.0" styleClass="label-text" stylesheets="@../styles/forms.css" text="Category" />
-            <TextField fx:id="txt_user" layoutX="170.0" layoutY="143.0" prefHeight="39.0" prefWidth="241.0" styleClass="rounded-text-field" stylesheets="@../styles/login.css" />
-            <Button layoutX="193.0" layoutY="226.0" mnemonicParsing="false" styleClass="button-51" stylesheets="@../styles/forms.css" text="Add" />
+            <TextField fx:id="txt_category" layoutX="170.0" layoutY="143.0" prefHeight="39.0" prefWidth="241.0" styleClass="rounded-text-field" stylesheets="@../styles/login.css" />
+            <Button fx:id="btn_addCategory" layoutX="193.0" layoutY="226.0" mnemonicParsing="false" onAction="#btn_addCategory" styleClass="button-51" stylesheets="@../styles/forms.css" text="Add Category" />
             <ImageView fx:id="imgBack" fitHeight="51.0" fitWidth="37.0" layoutX="14.0" layoutY="27.0" onMouseClicked="#imgBack" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../img/esquema-de-boton-circular-de-flecha-hacia-atras-izquierda.png" />
