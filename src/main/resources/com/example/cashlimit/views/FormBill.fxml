@@ -17,7 +17,7 @@
             <Label layoutX="60.0" layoutY="141.0" styleClass="label-text" stylesheets="@../styles/forms.css" text="Category" />
             <Label layoutX="52.0" layoutY="214.0" styleClass="label-text" stylesheets="@../styles/forms.css" text="Description" />
             <Label layoutX="52.0" layoutY="292.0" styleClass="label-text" stylesheets="@../styles/forms.css" text="Amount" />
-            <ComboBox fx:id="cbb_accounts" layoutX="170.0" layoutY="133.0" prefHeight="4.0" prefWidth="232.0" styleClass="label-label" stylesheets="@../styles/login.css" />
+            <ComboBox fx:id="cbb_category" layoutX="170.0" layoutY="133.0" onAction="#cbb_category" prefHeight="4.0" prefWidth="232.0" styleClass="label-label" stylesheets="@../styles/login.css" />
             <TextField fx:id="txt_description" layoutX="170.0" layoutY="212.0" prefHeight="39.0" prefWidth="241.0" styleClass="rounded-text-field" stylesheets="@../styles/login.css" />
             <TextField fx:id="txt_amount" layoutX="166.0" layoutY="292.0" prefHeight="39.0" prefWidth="241.0" promptText="00.00" styleClass="rounded-text-field" stylesheets="@../styles/login.css" />
             <Button fx:id="bt_AddBill" layoutX="196.0" layoutY="408.0" mnemonicParsing="false" onAction="#bt_AddBill" styleClass="button-51" stylesheets="@../styles/forms.css" text="Add Bill" />

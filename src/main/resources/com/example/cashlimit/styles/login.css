@@ -37,3 +37,9 @@
     -fx-font-size: 14px;                /* Tamaño de fuente */
      -fx-cursor: hand;
 }
+
+.panel{
+    -fx-background-color: silver 0.72;
+    -fx-background-radius: 50px;
+
+}

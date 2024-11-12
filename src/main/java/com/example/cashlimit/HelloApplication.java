@@ -4,7 +4,7 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-
+import com.example.cashlimit.database.Conneection;
 import java.io.IOException;
 
 import static javafx.application.Application.launch;
@@ -17,6 +17,12 @@ public class HelloApplication extends Application {
         stage.setTitle("CashLimit");
         stage.setScene(scene);
         stage.show();
+        if(Conneection.getConnection() != null) {
+            System.out.println("Conexión exitosa");
+
+        } else {
+            System.out.println("Conexión fallida");
+        }
     }
 
     public static void main(String[] args) {

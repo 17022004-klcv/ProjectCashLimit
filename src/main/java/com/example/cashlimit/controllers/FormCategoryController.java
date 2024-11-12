@@ -1,5 +1,8 @@
 package com.example.cashlimit.controllers;
 
+import com.example.cashlimit.database.CategoryBillDAO;
+import com.example.cashlimit.model.CategoryBill;
+import com.example.cashlimit.model.Loggeo;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -14,6 +17,7 @@ import javafx.stage.Stage;
 
 import javax.swing.*;
 import java.io.IOException;
+import java.sql.SQLException;
 
 import static com.example.cashlimit.validations.validation.emptyText;
 
@@ -28,11 +32,19 @@ public class FormCategoryController {
     private Button btn_addCategory;
 
     @FXML
-    void btn_addCategory(ActionEvent event) {
+    void btn_addCategory(ActionEvent event) throws SQLException {
         if(!emptyText(txt_category)){
             System.out.println("descripcion vacio");
         }else{
-            System.out.println("ningun campo vacio");
+
+            //data for categoryBill
+            String category = txt_category.getText();
+
+            CategoryBill categoryB = new CategoryBill(category);
+            CategoryBillDAO queryCategory = new CategoryBillDAO();
+
+            queryCategory.addCategoryBill(categoryB);
+
             JOptionPane.showMessageDialog(null, "Category Added!");
             txt_category.setText("");
 

@@ -42,12 +42,12 @@
       </Pane>
       <Pane layoutX="21.0" layoutY="104.0" prefHeight="417.0" prefWidth="792.0" stylesheets="@../styles/dashboard.css">
          <children>
-            <TableView layoutX="36.0" layoutY="14.0" prefHeight="312.0" prefWidth="726.0" stylesheets="@../styles/dashboard.css">
+            <TableView fx:id="TableBills" layoutX="36.0" layoutY="14.0" prefHeight="312.0" prefWidth="726.0" stylesheets="@../styles/dashboard.css">
               <columns>
-                <TableColumn prefWidth="75.0" text="Mount" />
-                <TableColumn prefWidth="165.59999084472656" text="Category" />
-                  <TableColumn prefWidth="319.20001220703125" text="Description" />
-                  <TableColumn prefWidth="156.79998779296875" text="Date" />
+                <TableColumn fx:id="ColumnAmount" prefWidth="75.0" text="Mount" />
+                <TableColumn fx:id="ColumnCategory" prefWidth="165.59999084472656" text="Category" />
+                  <TableColumn fx:id="ColumnDescription" prefWidth="319.20001220703125" text="Description" />
+                  <TableColumn fx:id="ColumnDate" prefWidth="156.79998779296875" text="Date" />
               </columns>
                <styleClass>
                   <String fx:value="table-row-cell" />

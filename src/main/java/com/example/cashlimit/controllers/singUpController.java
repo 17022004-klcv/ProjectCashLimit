@@ -1,5 +1,9 @@
 package com.example.cashlimit.controllers;
 
+import com.example.cashlimit.database.AccountsDAO;
+import com.example.cashlimit.database.UserDAO;
+import com.example.cashlimit.model.Accounts;
+import com.example.cashlimit.model.User;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
@@ -13,6 +17,7 @@ import javafx.stage.Stage;
 
 import javax.swing.*;
 import java.io.IOException;
+import java.sql.SQLException;
 
 import static com.example.cashlimit.validations.validation.*;
 
@@ -45,8 +50,11 @@ public class singUpController {
     @FXML
     private TextField txt_phone;
 
+    UserDAO queryUser = new UserDAO();
+    AccountsDAO queryAccount = new AccountsDAO();
+
     @FXML
-    void bt_singUp(ActionEvent event) throws IOException {
+    void bt_singUp(ActionEvent event) throws IOException, SQLException {
         if (!emptyText(txt_amount)) {
             System.out.println("Monto vacío");
         } else if (!emptyText(txt_bank)) {
@@ -66,19 +74,43 @@ public class singUpController {
             if (validateNumberFormat(txt_phone)){
                 if (validateEmail(txt_email)){
                     if(validateAccountNumber(txt_numAccount)){
-                        JOptionPane.showMessageDialog(null, "New user created with success !");
+
+                        //data for Table user
+                        String name = txt_firstname.getText();
+                        String lastname = txt_lastname.getText();
+                        String mail = txt_email.getText();
+                        String tel = txt_phone.getText();
+
+                        // data for table accounts
+                        String num_account = txt_numAccount.getText();
+                        double amount = Double.parseDouble(txt_amount.getText());
+                        String bank = txt_bank.getText();
+
+                        // falta agregar el tipo de cuenta con el combobox
+
+
+                        System.out.println("nombre " + name);
+                        System.out.println("mail "+mail);
+
+                        User user = new User(name, lastname, mail, tel);
+                        Accounts account = new Accounts(num_account, amount, bank, 0, 1, "");
+
+                        queryUser.RegisterUser(user);
+                        queryAccount.RegisterAccount(account);
+
+                        JOptionPane.showMessageDialog(null, "Your registration is almost there!");
 
                         // Limpiar los campos después de agregar la factura
-                        txt_amount.setText("");
-                        txt_bank.setText("");
-                        txt_email.setText("");
-                        txt_lastname.setText("");
-                        txt_phone.setText("");
-                        txt_firstname.setText("");
-                        txt_numAccount.setText("");
+//                        txt_amount.setText("");
+//                        txt_bank.setText("");
+//                        txt_email.setText("");
+//                        txt_lastname.setText("");
+//                        txt_phone.setText("");
+//                        txt_firstname.setText("");
+//                        txt_numAccount.setText("");
 
                         // Cambiar de vista si todos los campos están llenos
-                        CambiarVista("/com/example/cashlimit/views/login.fxml", (Node) event.getSource());
+                        CambiarVista("/com/example/cashlimit/views/FormNewRegister.fxml", (Node) event.getSource());
                     }
 
                 }

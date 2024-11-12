@@ -64,7 +64,7 @@
                   <String fx:value="button-51" />
                </styleClass>
             </Button>
-            <ImageView fx:id="imglog_out" fitHeight="42.0" fitWidth="48.0" layoutX="121.0" layoutY="339.0" onMouseClicked="#imgLog_out" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="imglog_out" fitHeight="42.0" fitWidth="48.0" layoutX="121.0" layoutY="339.0" onMouseClicked="#o" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../img/encender.png" />
                </image>

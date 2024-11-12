@@ -1,6 +1,8 @@
 package com.example.cashlimit.controllers;
 
 import com.example.cashlimit.HelloApplication;
+import com.example.cashlimit.database.LoggeoDAO;
+import com.example.cashlimit.model.Loggeo;
 import com.example.cashlimit.validations.*;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -14,7 +16,9 @@ import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
+import javax.swing.*;
 import java.io.IOException;
+import java.sql.SQLException;
 
 import static com.example.cashlimit.validations.validation.emptyText;
 import static com.example.cashlimit.validations.validation.emptyText_Trim;
@@ -49,14 +53,28 @@ public class logincontroller {
     }
 
     @FXML
-    void bt_login(ActionEvent event) throws IOException {
+    void bt_login(ActionEvent event) throws IOException, SQLException {
 
         if(!emptyText_Trim(txt_user)){
             System.out.println("usuario vacio");
         }else if(!emptyText_Trim(txt_password)){
             System.out.println("pass vacio");
         }else{
-            CambiarVista("/com/example/cashlimit/views/dashboard.fxml", (Node) event.getSource());
+
+            //data for loggeo table
+            String user = txt_user.getText();
+            String password = txt_password.getText();
+
+            Loggeo loggeo = new Loggeo(user, password);
+            LoggeoDAO queryLoggeo = new LoggeoDAO();
+
+            if(queryLoggeo.isExitUser(loggeo)){
+                CambiarVista("/com/example/cashlimit/views/dashboard.fxml", (Node) event.getSource());
+            }else{
+                JOptionPane.showMessageDialog(null, "User or Password incorrect!");
+            }
+
+
 
         }
     }
