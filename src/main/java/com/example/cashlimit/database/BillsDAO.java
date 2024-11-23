@@ -9,6 +9,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -16,6 +17,7 @@ import static com.example.cashlimit.database.Conneection.getConnection;
 
 public class BillsDAO {
 
+    //get bills
     public ObservableList<Map> getBills() throws SQLException {
         ObservableList<Map> lista = FXCollections.observableArrayList();
 
@@ -43,6 +45,7 @@ public class BillsDAO {
         return lista;
     }
 
+    //insert bill
     public static void insertBill(Bills bill) throws SQLException {
         //establecer la conexion a la base de datos
 
@@ -76,4 +79,27 @@ public class BillsDAO {
         }
 
     }
+
+    //update bill
+    public void updateBillByDateAndAmount(Bills bill) throws SQLException {
+        String sql = "UPDATE bills SET descrip_bill = ?, total_bill = ?, id_CategoryBill = ? WHERE date_bill = ? AND total_bill = ?";
+        try (Connection conn = getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+            stmt.setString(1, bill.getDescrip_bill());
+            stmt.setDouble(2, bill.getTotal_bill());
+            stmt.setInt(3, bill.getId_CategoryBill());
+            stmt.setString(4, bill.getDate_bill());
+            stmt.setDouble(5, bill.getTotal_bill()); // Busca por fecha y monto original
+
+            int rowsUpdated = stmt.executeUpdate();
+
+            if (rowsUpdated > 0) {
+                System.out.println("Factura actualizada correctamente.");
+            } else {
+                System.out.println("No se encontró ninguna factura con los criterios especificados.");
+            }
+        }
+    }
+
+
 }

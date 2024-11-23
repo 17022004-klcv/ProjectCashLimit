@@ -3,10 +3,9 @@ package com.example.cashlimit.database;
 import com.example.cashlimit.model.Accounts;
 import com.example.cashlimit.model.User;
 
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 import static com.example.cashlimit.database.Conneection.getConnection;
 
@@ -36,8 +35,8 @@ public class AccountsDAO {
                 }
 
                 // Ahora insertar en la tabla 'accounts' utilizando el ID obtenido
-                String query = "INSERT INTO accounts (num_account, amount, bank, id_user, id_type_account, status_account) " +
-                        "VALUES (?, ?, ?, ?, 2, 'Active');";
+                String query = "INSERT INTO users (name_user, lastname_user, mail_user, tel_user) VALUES (?, ?, ?, ?);";
+
                 java.sql.PreparedStatement pstmt = con.prepareStatement(query);
                 pstmt.setString(1, accounts.getNum_account());
                 pstmt.setDouble(2, accounts.getAmount());
@@ -56,5 +55,22 @@ public class AccountsDAO {
         }
 
 
+    }
+
+    public List<String> getCategorys() {
+        List<String> categorias = new ArrayList<>();
+        String sql = "SELECT type_account\n" +
+                "FROM type_account";
+        try (Connection con = getConnection();
+             PreparedStatement pst = con.prepareStatement(sql);
+             ResultSet rs = pst.executeQuery()) {
+            while (rs.next()) {
+                categorias.add(rs.getString("type_account"));
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return categorias;
     }
 }

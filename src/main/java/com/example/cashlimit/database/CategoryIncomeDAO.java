@@ -1,6 +1,7 @@
 package com.example.cashlimit.database;
 
 import com.example.cashlimit.model.CategoryBill;
+import com.example.cashlimit.model.CategoryIncome;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
@@ -16,20 +17,21 @@ import java.util.Map;
 
 import static com.example.cashlimit.database.Conneection.getConnection;
 
-public class CategoryBillDAO {
+public class CategoryIncomeDAO {
 
-    public static void addCategoryBill(CategoryBill category) throws SQLException {
+
+    public static void addCategoryIncome(CategoryIncome category) throws SQLException {
 
         //establecer la conexion a la base de datos
 
         Connection con = getConnection();
         //Verificamos la conexion a la base de datos
-        if(con!=null){
+        if (con != null) {
             //ejecutar la query para insertar empleado
-            try{
+            try {
                 //query de insertar empleado
                 //se hace de esta forma para evitar ataques de inyeccion SQL
-                String query = "insert into CategoryBills (name_CategoryBill) values (?);;";
+                String query = "insert into CategoryIncomes (name_CategoryIncome) values (?);;";
 
                 //preparar la sentencia
                 java.sql.PreparedStatement pstmt = con.prepareStatement(query);
@@ -37,10 +39,10 @@ public class CategoryBillDAO {
 
                 //ejecutar la sentencia
                 pstmt.execute();
-                System.out.println("CATEGORY BILL INSERTED!");
+                System.out.println("CATEGORY INCOME INSERTED!");
                 //con.close(); //cerrar la conexion
             } catch (SQLException e) {
-                System.out.println("MISTAKE TO INSERT CATEGORY BILL" + e.getMessage());
+                System.out.println("MISTAKE TO INSERT CATEGORY INCOME" + e.getMessage());
                 throw e;
 
             }
@@ -49,39 +51,16 @@ public class CategoryBillDAO {
 
     }
 
-    //function for get bill categories
-    public ObservableList<Map> getCategoryBill() throws SQLException {
-        ObservableList<Map> lista = FXCollections.observableArrayList();
-
-        String sql = "select name_CategoryBill from CategoryBills";
-
-        try (Connection con = getConnection();
-             PreparedStatement ps = con.prepareStatement(sql);
-             ResultSet rs = ps.executeQuery()) {
-
-            while (rs.next()) {
-                Map<String, Object> category = new HashMap<>();
-                category.put("name_CategoryBill", rs.getString("name_CategoryBill"));
-                lista.add(category);
-            }
-
-        } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null,"MISTAKE TO SELECT CATEGORY BILL" + e.getMessage());
-            throw e;
-        }
-
-        return lista;
-    }
-
+    //function for get income categories
     public List<String> getCategorys() {
         List<String> categorias = new ArrayList<>();
-        String sql = "SELECT name_CategoryBill\n" +
-                "FROM CategoryBills";
+        String sql = "SELECT name_CategoryIncome\n" +
+                "FROM CategoryIncomes";
         try (Connection con = getConnection();
              PreparedStatement pst = con.prepareStatement(sql);
              ResultSet rs = pst.executeQuery()) {
             while (rs.next()) {
-                categorias.add(rs.getString("name_CategoryBill"));
+                categorias.add(rs.getString("name_CategoryIncome"));
             }
 
         } catch (Exception e) {
@@ -90,12 +69,13 @@ public class CategoryBillDAO {
         return categorias;
     }
 
+    //function for get income categories
     public int searchCategory(String category) throws SQLException {
         // Variable para almacenar el ID
         int id = -1;
 
         // Consulta SQL con un parámetro
-        String sql = "SELECT id_CategoryBill FROM CategoryBills WHERE name_CategoryBill = ?";
+        String sql = "SELECT id_CategoryIncome FROM CategoryIncomes WHERE name_CategoryIncome = ?";
 
         // Usar try-with-resources para asegurar el cierre de recursos
         try (Connection conn = getConnection();// Cambia a tu método para obtener la conexión
@@ -108,7 +88,7 @@ public class CategoryBillDAO {
             try (ResultSet rs = pstmt.executeQuery()) {
                 // Verificar si hay un resultado
                 if (rs.next()) {
-                    id = rs.getInt("id_CategoryBill");
+                    id = rs.getInt("id_CategoryIncome");
                 }
             }
         }

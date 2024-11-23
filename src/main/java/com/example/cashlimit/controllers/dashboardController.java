@@ -2,6 +2,7 @@ package com.example.cashlimit.controllers;
 
 import com.example.cashlimit.database.BillsDAO;
 import com.example.cashlimit.database.CategoryBillDAO;
+import com.example.cashlimit.model.Bills;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -9,9 +10,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.MapValueFactory;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -56,10 +55,12 @@ public class dashboardController {
     @FXML
     private TableView<Map> TableBills;
 
-    @FXML
-    public void initialize() throws SQLException {
-        tableBills();
-    }
+        @FXML
+        public void initialize() throws SQLException {
+            tableBills();
+
+
+        }
     @FXML
     void btAddBill(ActionEvent event) throws IOException {
         CambiarVista("/com/example/cashlimit/views/FormBill.fxml", (Node) event.getSource());
@@ -67,9 +68,37 @@ public class dashboardController {
 
     @FXML
     void btUpdateBill(ActionEvent event) throws IOException {
-        CambiarVista("/com/example/cashlimit/views/FormBillUpdate.fxml", (Node) event.getSource());
+        // Obtener el registro seleccionado de la tabla
+        Map selectedBill = TableBills.getSelectionModel().getSelectedItem();
 
+        if (selectedBill != null) {
+            // Aquí puedes extraer los datos del registro seleccionado
+            Object totalBill = selectedBill.get("b.total_bill");
+            Object category = selectedBill.get("c.name_CategoryBill");
+            Object description = selectedBill.get("b.descrip_bill");
+            Object date = selectedBill.get("b.date_bill");
+
+            // Cargar la nueva vista
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/cashlimit/views/FormBillUpdate.fxml"));
+            Parent root = loader.load();
+
+            // Pasar los datos seleccionados al controlador de la nueva vista
+            FormBillUpdateController controller = loader.getController();
+            controller.setBillData(totalBill, category, description, date);
+
+            // Cambiar la vista
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            stage.setScene(new Scene(root));
+            stage.show();
+
+            System.out.println("Registro seleccionado: " + selectedBill);
+        } else {
+            // Mostrar mensaje si no se seleccionó nada
+            Alert alert = new Alert(Alert.AlertType.WARNING, "Por favor, selecciona un registro.", ButtonType.OK);
+            alert.showAndWait();
+        }
     }
+
 
     @FXML
     void imgBill(MouseEvent event) throws IOException {

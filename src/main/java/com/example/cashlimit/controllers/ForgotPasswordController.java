@@ -1,5 +1,6 @@
 package com.example.cashlimit.controllers;
 
+import com.example.cashlimit.database.UserDAO;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -12,6 +13,7 @@ import javafx.stage.Stage;
 
 import javax.swing.*;
 import java.io.IOException;
+import java.sql.SQLException;
 
 import static com.example.cashlimit.validations.validation.emptyText;
 import static com.example.cashlimit.validations.validation.validateEmail;
@@ -32,8 +34,29 @@ public class ForgotPasswordController {
 
         if(emptyText(txt_user) && emptyText(txt_password)){
             if(validateEmail(txt_user)){
-                JOptionPane.showMessageDialog(null, "Password Updated!");
-                CambiarVista("/com/example/cashlimit/views/login.fxml", (Node) event.getSource());
+
+                String email = txt_user.getText();  // Obtenemos el correo desde un TextField
+                String newPassword = txt_password.getText();  // Obtenemos la nueva contraseña desde un TextField
+
+                try {
+                    UserDAO queryUser = new UserDAO();  // Asegúrate de que esta instancia esté bien inicializada
+
+                    if(queryUser.forgotPassword(email, newPassword)){
+                        // Si la contraseña se actualizó correctamente
+                        JOptionPane.showMessageDialog(null, "Contraseña actualizada correctamente.");
+                        CambiarVista("/com/example/cashlimit/views/login.fxml", (Node) event.getSource());
+                    }else{
+                        // Si hubo un error al buscar el correo o actualizar la contraseña
+                        JOptionPane.showMessageDialog(null, "Error al actualizar la contraseña. No se encontró el correo.");
+                    }
+
+
+
+                } catch (SQLException e) {
+                    JOptionPane.showMessageDialog(null, "Error al actualizar la contraseña: " + e.getMessage());
+                }
+
+
             }
         }
 

@@ -53,6 +53,15 @@ public class FormBillController {
     public void initialize() throws SQLException {
         cargarCategorias();
     }
+    private int userId; // Variable para almacenar el id_user
+
+    // Método para recibir el id_user desde el primer controlador
+    public void setUserId(int userId) {
+        this.userId = userId;
+        System.out.println("ID del usuario recibido: " + userId); // Verificar que se recibió correctamente
+    }
+
+
     @FXML
     void bt_AddBill(ActionEvent event) throws SQLException {
         if (!emptyText(txt_description)) {
@@ -62,18 +71,20 @@ public class FormBillController {
         } else {
             System.out.println("ningun campo vacio");
             if (validateAmount(txt_amount)) {
-
+                BillsDAO queryBill = new BillsDAO();
+                CategoryBillDAO queryCategory = new CategoryBillDAO();
                 //data for
                 double amount = Double.parseDouble(txt_amount.getText());
                 String descrip = txt_description.getText();
                 LocalDate fechaActual = LocalDate.now();
                 String date = String.valueOf(fechaActual);
-                //int category = Integer.parseInt(cbb_category.getId());
 
+                // Obtener la categoría seleccionada del ComboBox
+                String seleccion = manejarSeleccion();
+                int categoryId = queryCategory.searchCategory(seleccion);
 
-
-                BillsDAO queryBill = new BillsDAO();
-                Bills bill = new Bills(amount, date, descrip, 1, 1);
+                System.out.println("el id recibido " + userId);
+                Bills bill = new Bills(amount, date, descrip, categoryId, 1);
                 queryBill.insertBill(bill);
                 JOptionPane.showMessageDialog(null, "Bill Added!");
                 txt_description.setText("");
@@ -93,6 +104,14 @@ public class FormBillController {
         cbb_category.getItems().clear();
         cbb_category.getItems().addAll(queryCategorys.getCategorys());
     }
+
+    public String manejarSeleccion() {
+        // Obtener el valor seleccionado al hacer clic o usar el ComboBox
+        String seleccion = cbb_category.getValue();
+        System.out.println("Seleccionaste desde manejarSeleccion: " + seleccion);
+        return seleccion;
+    }
+
     public static void CambiarVista(String ruta, Node bt) throws IOException {
         FXMLLoader loader = new FXMLLoader(dashboardController.class.getResource(ruta));
         Parent root = loader.load();

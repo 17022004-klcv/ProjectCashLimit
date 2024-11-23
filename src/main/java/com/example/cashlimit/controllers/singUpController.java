@@ -1,6 +1,7 @@
 package com.example.cashlimit.controllers;
 
 import com.example.cashlimit.database.AccountsDAO;
+import com.example.cashlimit.database.CategoryBillDAO;
 import com.example.cashlimit.database.UserDAO;
 import com.example.cashlimit.model.Accounts;
 import com.example.cashlimit.model.User;
@@ -27,7 +28,7 @@ public class singUpController {
     private Button bt_singUp;
 
     @FXML
-    private ComboBox<?> cbb_accounts;
+    private ComboBox<String> cbb_accounts;
 
     @FXML
     private TextField txt_amount;
@@ -53,6 +54,16 @@ public class singUpController {
     UserDAO queryUser = new UserDAO();
     AccountsDAO queryAccount = new AccountsDAO();
 
+    @FXML
+    public void initialize() throws SQLException {
+        cargarCategorias();
+    }
+
+    AccountsDAO queryCategorys = new AccountsDAO();
+    public void cargarCategorias() {
+        cbb_accounts.getItems().clear();
+        cbb_accounts.getItems().addAll(queryCategorys.getCategorys());
+    }
     @FXML
     void bt_singUp(ActionEvent event) throws IOException, SQLException {
         if (!emptyText(txt_amount)) {
@@ -95,11 +106,14 @@ public class singUpController {
                         User user = new User(name, lastname, mail, tel);
                         Accounts account = new Accounts(num_account, amount, bank, 0, 1, "");
 
-                        queryUser.RegisterUser(user);
-                        queryAccount.RegisterAccount(account);
+                        queryUser.RegisterUser(account, name, lastname, mail, tel);
+                        // queryAccount.RegisterAccount(account);
+                        UserDAO queryUserId = new UserDAO();
+                        int userId = queryUserId.obtenerIdUsuario(mail);
 
                         JOptionPane.showMessageDialog(null, "Your registration is almost there!");
 
+                        cambiarVista(event, userId);
                         // Limpiar los campos después de agregar la factura
 //                        txt_amount.setText("");
 //                        txt_bank.setText("");
@@ -110,7 +124,7 @@ public class singUpController {
 //                        txt_numAccount.setText("");
 
                         // Cambiar de vista si todos los campos están llenos
-                        CambiarVista("/com/example/cashlimit/views/FormNewRegister.fxml", (Node) event.getSource());
+                        //CambiarVista("/com/example/cashlimit/views/FormNewRegister.fxml", (Node) event.getSource());
                     }
 
                 }
@@ -120,6 +134,29 @@ public class singUpController {
 
 
     }
+    private void cambiarVista(ActionEvent event, int userId) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/cashlimit/views/FormNewRegister.fxml"));
+            Parent root = loader.load();
+
+            // Pasar el id_user al controlador de la nueva vista
+            FormNewRegisterController controlador = loader.getController();
+
+            controlador.setUserId(userId);
+
+
+            // Crear e inyectar manualmente el controlador adicional (userController)
+            // Cambiar la escena
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            stage.setScene(new Scene(root));
+            stage.show();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+
     public static void CambiarVista(String ruta, Node bt) throws IOException {
         FXMLLoader loader = new FXMLLoader(dashboardController.class.getResource(ruta));
         Parent root = loader.load();

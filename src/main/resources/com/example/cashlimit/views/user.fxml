@@ -2,7 +2,6 @@
 
 <?import java.lang.String?>
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
@@ -42,29 +41,21 @@
       </Pane>
       <Pane layoutX="155.0" layoutY="99.0" prefHeight="418.0" prefWidth="531.0" stylesheets="@../styles/dashboard.css">
          <children>
-            <Button fx:id="btUpdateInfo" layoutX="310.0" layoutY="336.0" mnemonicParsing="false" onAction="#btUpdateInfo" prefHeight="51.0" prefWidth="125.0" stylesheets="@../styles/dashboard.css" text="Update Info">
+            <Button fx:id="btUpdateInfo" layoutX="220.0" layoutY="314.0" mnemonicParsing="false" onAction="#btUpdateInfo" prefHeight="51.0" prefWidth="125.0" stylesheets="@../styles/dashboard.css" text="Update Info">
                <styleClass>
                   <String fx:value="boton" />
                   <String fx:value="button-51" />
                </styleClass>
             </Button>
-            <Label layoutX="122.0" layoutY="39.0" styleClass="label-label" stylesheets="@../styles/login.css" text="User" />
-            <TextField fx:id="txt_user" layoutX="203.0" layoutY="37.0" prefHeight="39.0" prefWidth="241.0" styleClass="rounded-text-field" stylesheets="@../styles/login.css" />
-            <Label layoutX="121.0" layoutY="91.0" styleClass="label-label" stylesheets="@../styles/login.css" text="Password" />
-            <Label layoutX="117.0" layoutY="150.0" styleClass="label-label" stylesheets="@../styles/login.css" text="Phone" />
-            <Label layoutX="119.0" layoutY="206.0" styleClass="label-label" stylesheets="@../styles/login.css" text="Email" />
-            <Label layoutX="122.0" layoutY="270.0" styleClass="label-label" stylesheets="@../styles/login.css" text="Accounts" />
-            <TextField fx:id="txt_phone" layoutX="203.0" layoutY="148.0" prefHeight="39.0" prefWidth="241.0" styleClass="rounded-text-field" stylesheets="@../styles/login.css" />
-            <TextField fx:id="txt_email" layoutX="203.0" layoutY="204.0" prefHeight="39.0" prefWidth="241.0" styleClass="rounded-text-field" stylesheets="@../styles/login.css" />
-            <ComboBox fx:id="cbb_accounts" layoutX="203.0" layoutY="265.0" prefHeight="4.0" prefWidth="232.0" styleClass="label-label" stylesheets="@../styles/login.css" />
-            <TextField fx:id="txt_password" layoutX="203.0" layoutY="89.0" prefHeight="39.0" prefWidth="241.0" styleClass="rounded-text-field" stylesheets="@../styles/login.css" />
-            <Button fx:id="bt_addAccount" layoutX="178.0" layoutY="336.0" mnemonicParsing="false" onAction="#bt_addAccount" prefHeight="51.0" prefWidth="125.0" stylesheets="@../styles/dashboard.css" text="Add Account">
-               <styleClass>
-                  <String fx:value="boton" />
-                  <String fx:value="button-51" />
-               </styleClass>
-            </Button>
-            <ImageView fx:id="imglog_out" fitHeight="42.0" fitWidth="48.0" layoutX="121.0" layoutY="339.0" onMouseClicked="#o" pickOnBounds="true" preserveRatio="true">
+            <Label layoutX="117.0" layoutY="39.0" styleClass="label-label" stylesheets="@../styles/login.css" text="User" />
+            <TextField fx:id="txt_user" editable="false" layoutX="203.0" layoutY="37.0" prefHeight="39.0" prefWidth="241.0" styleClass="rounded-text-field" stylesheets="@../styles/login.css" />
+            <Label layoutX="116.0" layoutY="100.0" styleClass="label-label" stylesheets="@../styles/login.css" text="Password" />
+            <Label layoutX="116.0" layoutY="168.0" styleClass="label-label" stylesheets="@../styles/login.css" text="Phone" />
+            <Label layoutX="119.0" layoutY="240.0" styleClass="label-label" stylesheets="@../styles/login.css" text="Email" />
+            <TextField fx:id="txt_phone" layoutX="203.0" layoutY="166.0" prefHeight="39.0" prefWidth="241.0" styleClass="rounded-text-field" stylesheets="@../styles/login.css" />
+            <TextField fx:id="txt_email" layoutX="203.0" layoutY="236.0" prefHeight="39.0" prefWidth="241.0" styleClass="rounded-text-field" stylesheets="@../styles/login.css" />
+            <TextField fx:id="txt_password" layoutX="203.0" layoutY="98.0" prefHeight="39.0" prefWidth="241.0" styleClass="rounded-text-field" stylesheets="@../styles/login.css" />
+            <ImageView fx:id="imglog_out" fitHeight="42.0" fitWidth="48.0" layoutX="158.0" layoutY="318.0" onMouseClicked="#bt_logout" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../img/encender.png" />
                </image>

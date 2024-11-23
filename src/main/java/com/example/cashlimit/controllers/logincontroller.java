@@ -2,6 +2,7 @@ package com.example.cashlimit.controllers;
 
 import com.example.cashlimit.HelloApplication;
 import com.example.cashlimit.database.LoggeoDAO;
+import com.example.cashlimit.database.UserDAO;
 import com.example.cashlimit.model.Loggeo;
 import com.example.cashlimit.validations.*;
 import javafx.event.ActionEvent;
@@ -69,6 +70,17 @@ public class logincontroller {
             LoggeoDAO queryLoggeo = new LoggeoDAO();
 
             if(queryLoggeo.isExitUser(loggeo)){
+
+                UserDAO queryuser = new UserDAO();
+                int userId = queryuser.getUserIdByCredentials(user, password);
+
+                userController controlleruser = new userController();
+                controlleruser.setUserId(userId);
+
+                FormBillController bill = new FormBillController();
+                bill.setUserId(userId);
+
+                System.out.println("el id enviado es " + userId);
                 CambiarVista("/com/example/cashlimit/views/dashboard.fxml", (Node) event.getSource());
             }else{
                 JOptionPane.showMessageDialog(null, "User or Password incorrect!");
